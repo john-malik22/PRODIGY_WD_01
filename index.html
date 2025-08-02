@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ElectroMart - Electronics E-Commerce</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: transparent;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease-in-out;
+            z-index: 999;
+        }
+
+        nav.scrolled {
+            background-color: #0a0a0a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: white;
+        }
+
+        nav.scrolled .logo {
+            color: #00ffc3;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s, transform 0.3s;
+            padding: 5px 10px;
+        }
+
+        .nav-links li a:hover {
+            color: #00ffc3;
+            transform: scale(1.1);
+        }
+
+        nav.scrolled .nav-links li a {
+            color: #ddd;
+        }
+
+        header {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+            text-align: center;
+            color: white;
+        }
+
+        header .hero {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 50px;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero button {
+            padding: 12px 30px;
+            background-color: #00ffc3;
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .hero button:hover {
+            background-color: #00bfa3;
+        }
+
+        .section-title {
+            text-align: center;
+            padding: 40px 20px 10px;
+            font-size: 32px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .product {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .product-info .price {
+            font-weight: bold;
+            color: #0077ff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            color: white;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 20px;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 30px;
+                top: 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+                margin-top: 10px;
+                display: none;
+                background: #0a0a0a;
+                padding: 15px 0;
+                border-radius: 8px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li a {
+                color: #fff;
+                padding: 10px 20px;
+            }
+
+            header {
+                padding-top: 120px;
+                height: auto;
+                min-height: 60vh;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="logo">ElectroMart</div>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#">Deals</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="hero">
+            <h1>Explore the Future of Electronics</h1>
+            <p>Shop the latest gadgets, devices, and accessories — all in one place.</p>
+            <button>Shop Now</button>
+        </div>
+    </header>
+
+    <h2 class="section-title" id="products">Featured Products</h2>
+
+    <section class="products">
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1697898706719-bce6e007c817?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aXBob25lJTIwMTR8ZW58MHx8MHx8fDA%3D"
+                alt="Smartphone">
+            <div class="product-info">
+                <h3>iPhone 14 Pro</h3>
+                <p>6.1-inch Super Retina XDR display with A16 Bionic chip.</p>
+                <span class="price">₹1,29,999</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1623282033815-40b05d96c903?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXBpfGVufDB8fDB8fHww"
+                alt="Laptop">
+            <div class="product-info">
+                <h3>MacBook Air M2</h3>
+                <p>Lightweight, ultra-fast performance with all-day battery life.</p>
+                <span class="price">₹1,14,990</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=600&q=80"
+                alt="Smartwatch">
+            <div class="product-info">
+                <h3>Apple Watch Series 8</h3>
+                <p>Track your health, fitness, and stay connected on the go.</p>
+                <span class="price">₹45,900</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=600&q=80"
+                alt="Headphones">
+            <div class="product-info">
+                <h3>Sony WH-1000XM5</h3>
+                <p>Industry-leading noise cancellation and superior sound.</p>
+                <span class="price">₹26,999</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 ElectroMart. All rights reserved.
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 60) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
